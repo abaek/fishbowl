@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap'
 
 const mapStateToProps = (state) => {
   return {
@@ -11,6 +10,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addWord: (word) => dispatch({ type: 'ADD_WORD', value: word }),
+    startGame: () => dispatch({ type: 'START_GAME' }),
   }
 }
 
@@ -20,32 +20,60 @@ class Landing extends React.Component {
     this.state = {
       value: '',
     }
-    this.submitWord = this.submitWord.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.addWord = this.addWord.bind(this);
+    this.handleWordChange = this.handleWordChange.bind(this);
+    this.startGame = this.startGame.bind(this);
   }
 
-  handleChange(event) {
+  handleWordChange(event) {
     this.setState({value: event.target.value})
   }
 
-  submitWord() {
+  addWord() {
     console.log('submit word')
     this.props.addWord(this.state.value)
+    this.setState({value: ''})
     console.log(this.props.words)
+  }
+
+  startGame() {
+
   }
 
   render() {
     return (
-      <div>
+      <div >
+        <img src="img/fishbowl.png"className='image' />
+        <br/>
+        How many teams? <br/>
+        <div className="btn-group">
+          <button className="btn btn-default active">2</button>
+          <button className="btn btn-default">3</button>
+          <button className="btn btn-default">4</button>
+        </div>
+        <br/>
         {this.props.numWords} words
+        <br/>
+        Enter Word/Phrase:
+        <br/>
         <input type="text"
           value={this.state.value}
-          onChange={this.handleChange}
-           />
-         <button onClick={this.submitWord}>
-           Submit
-         </button>
-         <Button> Submit Word </Button>
+          onChange={this.handleWordChange}
+          />
+        <br/>
+        <button
+          onClick={this.addWord}
+          className="btn btn-default"
+          >
+          Add
+        </button>
+        <br/>
+        <button
+          onClick={this.startGame}
+          className="btn btn-default"
+          >
+          Start Game!
+        </button>
       </div>
     )
   }

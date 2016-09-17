@@ -21,7 +21,6 @@ class BaseComponent extends React.Component {
     const { started } = this.props
     return (
       <div>
-        Base
         <Landing />
       </div>
     )
