@@ -12,17 +12,17 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-class Landing extends React.Component {
+class Scores extends React.Component {
   render() {
     return (
       <div>
         <form>
           <input type="text" />
-          <input type="submit" />	
+          <input type="submit" />
         </form>
       </div>
     )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Landing)
+export default connect(mapStateToProps, mapDispatchToProps)(Scores)
