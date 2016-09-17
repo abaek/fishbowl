@@ -12,6 +12,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+// Shows the word, the timer and a button to go to the next word
 class Word extends React.Component {
   render() {
     return (

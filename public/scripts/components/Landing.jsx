@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { Button } from 'react-bootstrap'
 
 const mapStateToProps = (state) => {
   return {
@@ -44,6 +45,7 @@ class Landing extends React.Component {
          <button onClick={this.submitWord}>
            Submit
          </button>
+         <Button> Submit Word </Button>
       </div>
     )
   }

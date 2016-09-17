@@ -12,6 +12,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+// Screen between turns
+// Shows number of words remaining, scores and next team to go
 class Lobby extends React.Component {
   render() {
     return (

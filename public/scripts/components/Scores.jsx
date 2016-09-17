@@ -12,6 +12,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+// Shows list of all words, scores between rounds, next team to play
+// Lets you advance to the next round
 class Scores extends React.Component {
   render() {
     return (
