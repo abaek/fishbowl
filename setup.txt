@@ -1,0 +1,11 @@
+# One Time Setup
+npm install
+
+# Terminal 1
+webpack --progress --colors --watch
+
+# Terminal 2
+npm start
+
+# Browser
+localhost:3000
