@@ -6042,7 +6042,8 @@
 
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    numWords: state.numWords
+	    numWords: state.numWords,
+	    words: state.words
 	  };
 	};
 
@@ -6057,23 +6058,47 @@
 	var Landing = function (_React$Component) {
 	  _inherits(Landing, _React$Component);
 
-	  function Landing() {
+	  function Landing(props) {
 	    _classCallCheck(this, Landing);
 
-	    return _possibleConstructorReturn(this, (Landing.__proto__ || Object.getPrototypeOf(Landing)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (Landing.__proto__ || Object.getPrototypeOf(Landing)).call(this, props));
+
+	    _this.state = {
+	      value: ''
+	    };
+	    _this.submitWord = _this.submitWord.bind(_this);
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(Landing, [{
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      this.setState({ value: event.target.value });
+	    }
+	  }, {
+	    key: 'submitWord',
+	    value: function submitWord() {
+	      console.log('submit word');
+	      this.props.addWord(this.state.value);
+	      console.log(this.props.words);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
 	        'div',
 	        null,
+	        this.props.numWords,
+	        ' words',
+	        React.createElement('input', { type: 'text',
+	          value: this.state.value,
+	          onChange: this.handleChange
+	        }),
 	        React.createElement(
-	          'form',
-	          null,
-	          React.createElement('input', { type: 'text' }),
-	          React.createElement('input', { type: 'submit' })
+	          'button',
+	          { onClick: this.submitWord },
+	          'Submit'
 	        )
 	      );
 	    }
@@ -6290,6 +6315,7 @@
 
 	var defaultState = {
 	  started: false,
+	  numWords: 0,
 	  words: []
 	};
 
@@ -6311,7 +6337,9 @@
 	      });
 	    case 'ADD_WORD':
 	      state.words.push(action.value);
-	      return state;
+	      return Object.assign({}, state, {
+	        numWords: state.numWords + 1
+	      });
 	    default:
 	      return state;
 	  }

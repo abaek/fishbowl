@@ -2,6 +2,7 @@ import { createStore } from 'redux'
 
 const defaultState = {
   started: false,
+  numWords: 0,
   words: [],
 }
 
@@ -20,7 +21,9 @@ const counter = (state = defaultState, action) => {
       })
     case 'ADD_WORD':
       state.words.push(action.value)
-      return state
+      return Object.assign({}, state, {
+        numWords: state.numWords + 1,
+      })
     default:
       return state
   }
