@@ -19,6 +19,8 @@ class Landing extends React.Component {
     super(props)
     this.state = {
       value: '',
+      addDisabled: true,
+      startDisabled: true,
     }
     this.addWord = this.addWord.bind(this);
     this.handleWordChange = this.handleWordChange.bind(this);
@@ -26,14 +28,26 @@ class Landing extends React.Component {
   }
 
   handleWordChange(event) {
-    this.setState({value: event.target.value})
+    this.setState({
+      value: event.target.value,
+      addDisabled: event.target.value.length == 0,
+    });
   }
 
   addWord() {
-    console.log('submit word')
+    if(this.state.value.length == 0){
+      return;
+    }
+
+    console.log('submit word') // TODO remove
+
     this.props.addWord(this.state.value)
-    this.setState({value: ''})
-    console.log(this.props.words)
+    this.setState({
+      value: '',
+      startDisabled: this.props.words.length == 0,
+    })
+
+    console.log(this.props.words) // TODO remove
   }
 
   startGame() {
@@ -64,6 +78,7 @@ class Landing extends React.Component {
         <button
           onClick={this.addWord}
           className="btn btn-default"
+          disabled={this.state.addDisabled}
           >
           Add
         </button>
@@ -71,6 +86,7 @@ class Landing extends React.Component {
         <button
           onClick={this.startGame}
           className="btn btn-default"
+          disabled={this.state.startDisabled}
           >
           Start Game!
         </button>
