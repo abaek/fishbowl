@@ -42,8 +42,8 @@ class Landing extends React.Component {
 
   render() {
     return (
-      <div >
-        <img src="img/fishbowl.png"className='image' />
+      <div className="container-fluid body">
+        <img src="img/fishbowl.png" />
         <br/>
         How many teams? <br/>
         <div className="btn-group">

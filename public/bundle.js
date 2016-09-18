@@ -6161,8 +6161,8 @@
 	    value: function render() {
 	      return React.createElement(
 	        'div',
-	        null,
-	        React.createElement('img', { src: 'img/fishbowl.png', className: 'image' }),
+	        { className: 'container-fluid body' },
+	        React.createElement('img', { src: 'img/fishbowl.png' }),
 	        React.createElement('br', null),
 	        'How many teams? ',
 	        React.createElement('br', null),
