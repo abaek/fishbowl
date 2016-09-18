@@ -6162,7 +6162,7 @@
 	      return React.createElement(
 	        'div',
 	        { className: 'container-fluid body' },
-	        React.createElement('img', { src: 'img/fishbowl.png', className: 'full-width' }),
+	        React.createElement('img', { src: 'img/fishbowl.png', className: '.img-responsive' }),
 	        React.createElement('br', null),
 	        'How many teams? ',
 	        React.createElement('br', null),
