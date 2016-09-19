@@ -5995,22 +5995,39 @@
 	var BaseComponent = function (_React$Component) {
 	  _inherits(BaseComponent, _React$Component);
 
-	  function BaseComponent() {
+	  function BaseComponent(props) {
 	    _classCallCheck(this, BaseComponent);
 
-	    return _possibleConstructorReturn(this, (BaseComponent.__proto__ || Object.getPrototypeOf(BaseComponent)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (BaseComponent.__proto__ || Object.getPrototypeOf(BaseComponent)).call(this, props));
+
+	    _this.state = {
+	      visiblePage: 'landing'
+	    };
+	    _this.setPage = _this.setPage.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(BaseComponent, [{
+	    key: 'setPage',
+	    value: function setPage(page) {
+	      this.setState({ visiblePage: page });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var started = this.props.started;
+	      // TODO use a callback function or something that lets children call setPage
 
-	      return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(_Landing2.default, null)
-	      );
+	      switch (this.state.visiblePage) {
+	        case 'landing':
+	          return React.createElement(_Landing2.default, null);
+	        case 'lobby':
+	          return React.createElement(_Lobby2.default, null);
+	        case 'scores':
+	          return React.createElement(_Scores2.default, null);
+	        case 'word':
+	          retunr(React.createElement(_Word2.default, null));
+	      }
 	    }
 	  }]);
 

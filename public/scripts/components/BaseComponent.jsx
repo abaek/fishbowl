@@ -17,13 +17,31 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class BaseComponent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      visiblePage: 'landing'
+    }
+    this.setPage = this.setPage.bind(this)
+  }
+
+  setPage(page) {
+    this.setState({visiblePage: page})
+  }
+
   render() {
     const { started } = this.props
-    return (
-      <div>
-        <Landing />
-      </div>
-    )
+    // TODO use a callback function or something that lets children call setPage
+    switch(this.state.visiblePage) {
+      case 'landing':
+        return (<Landing/>)
+      case 'lobby':
+        return (<Lobby/>)
+      case 'scores':
+        return (<Scores/>)
+      case 'word':
+        retunr (<Word/>)
+    }
   }
 }
 
