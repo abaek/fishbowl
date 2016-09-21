@@ -1,9 +1,9 @@
 import { createStore } from 'redux'
 
 const defaultState = {
-  started: false,
   numWords: 0,
   words: [],
+  page: 'landing',
 }
 
 function random() {
@@ -15,9 +15,9 @@ function random() {
 
 const counter = (state = defaultState, action) => {
   switch (action.type) {
-    case 'START_GAME':
+    case 'SET_PAGE':
       return Object.assign({}, state, {
-        started: true,
+        page: action.page,
       })
     case 'ADD_WORD':
       state.words.push(action.value)

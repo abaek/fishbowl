@@ -1,46 +1,35 @@
 import Landing from './Landing.jsx'
 import Lobby from './Lobby.jsx'
 import Word from './Word.jsx'
+import Teams from './Teams.jsx'
 import Scores from './Scores.jsx'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
   return {
-    started: state.started,
+    page: state.page,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    startGame: () => dispatch({ type: 'START_GAME' }),
-  }
+  return {}
 }
 
 class BaseComponent extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      visiblePage: 'landing'
-    }
-    this.setPage = this.setPage.bind(this)
-  }
-
-  setPage(page) {
-    this.setState({visiblePage: page})
-  }
-
   render() {
-    const { started } = this.props
-    // TODO use a callback function or something that lets children call setPage
-    switch(this.state.visiblePage) {
+    switch(this.props.page) {
       case 'landing':
-        return (<Landing/>)
+        return <Landing/>
+      case 'teams':
+        return <Teams/>
       case 'lobby':
-        return (<Lobby/>)
+        return <Lobby/>
       case 'scores':
-        return (<Scores/>)
+        return <Scores/>
       case 'word':
-        retunr (<Word/>)
+        return <Word/>
+      default:
+        return null
     }
   }
 }

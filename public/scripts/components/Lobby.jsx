@@ -18,9 +18,10 @@ class Lobby extends React.Component {
   render() {
     return (
       <div>
+        Lobby
         <form>
-          <input type="text" />
-          <input type="submit" />
+          <input type='text' />
+          <input type='submit' />
         </form>
       </div>
     )

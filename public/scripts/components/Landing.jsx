@@ -9,8 +9,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addWord: (word) => dispatch({ type: 'ADD_WORD', value: word }),
-    startGame: () => dispatch({ type: 'START_GAME' }),
+    addWord: (word) => dispatch({
+      type: 'ADD_WORD',
+      value: word
+    }),
+    startGame: () => dispatch({
+      type: 'SET_PAGE',
+      page: 'teams',
+    }),
   }
 }
 
@@ -22,24 +28,21 @@ class Landing extends React.Component {
       addDisabled: true,
       startDisabled: true,
     }
-    this.addWord = this.addWord.bind(this);
-    this.handleWordChange = this.handleWordChange.bind(this);
-    this.startGame = this.startGame.bind(this);
+    this.addWord = this.addWord.bind(this)
+    this.handleWordChange = this.handleWordChange.bind(this)
   }
 
   handleWordChange(event) {
     this.setState({
       value: event.target.value,
       addDisabled: event.target.value.length == 0,
-    });
+    })
   }
 
   addWord() {
     if(this.state.value.length == 0){
-      return;
+      return
     }
-
-    console.log('submit word') // TODO remove
 
     this.props.addWord(this.state.value)
     this.setState({
@@ -50,45 +53,39 @@ class Landing extends React.Component {
     console.log(this.props.words) // TODO remove
   }
 
-  startGame() {
-
-  }
-
   render() {
+    const { numWords, startGame } = this.props
+    const { value, addDisabled, startDisabled } = this.state
+
     return (
-      <div className="container-fluid body">
-        <img src="img/fishbowl.png" className=".img-responsive"/>
+      <div className='container-fluid body'>
+        <img src='img/fishbowl.png' className='.img-responsive'/>
+
         <br/>
-        How many teams? <br/>
-        <div className="btn-group">
-          <button className="btn btn-default active">2</button>
-          <button className="btn btn-default">3</button>
-          <button className="btn btn-default">4</button>
-        </div>
-        <br/>
-        {this.props.numWords} words
+        {numWords} words
         <br/>
         Enter Word/Phrase:
         <br/>
-        <input type="text"
-          value={this.state.value}
+        <input type='text'
+          value={value}
           onChange={this.handleWordChange}
           />
         <br/>
         <button
           onClick={this.addWord}
-          className="btn btn-default"
-          disabled={this.state.addDisabled}
+          className='btn btn-default'
+          disabled={addDisabled}
           >
           Add
         </button>
         <br/>
+        
         <button
-          onClick={this.startGame}
-          className="btn btn-default"
-          disabled={this.state.startDisabled}
+          onClick={startGame}
+          className='btn btn-default'
+          disabled={startDisabled}
           >
-          Start Game!
+          Start
         </button>
       </div>
     )
