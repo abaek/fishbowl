@@ -56,7 +56,7 @@
 
 	var _BaseComponent2 = _interopRequireDefault(_BaseComponent);
 
-	var _Store = __webpack_require__(68);
+	var _Store = __webpack_require__(69);
 
 	var _Store2 = _interopRequireDefault(_Store);
 
@@ -5961,15 +5961,15 @@
 
 	var _Lobby2 = _interopRequireDefault(_Lobby);
 
-	var _Word = __webpack_require__(66);
+	var _Word = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Word.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _Word2 = _interopRequireDefault(_Word);
 
-	var _Teams = __webpack_require__(69);
+	var _Teams = __webpack_require__(67);
 
 	var _Teams2 = _interopRequireDefault(_Teams);
 
-	var _Scores = __webpack_require__(67);
+	var _Scores = __webpack_require__(68);
 
 	var _Scores2 = _interopRequireDefault(_Scores);
 
@@ -6086,6 +6086,7 @@
 	    };
 	    _this.addWord = _this.addWord.bind(_this);
 	    _this.handleWordChange = _this.handleWordChange.bind(_this);
+	    _this.addFiveRandomWords = _this.addFiveRandomWords.bind(_this);
 	    return _this;
 	  }
 
@@ -6098,16 +6099,25 @@
 	      });
 	    }
 	  }, {
+	    key: 'addFiveRandomWords',
+	    value: function addFiveRandomWords() {
+	      this.props.addWord('Hi');
+	      this.props.addWord('Sup');
+	      this.props.addWord('Doggie');
+	      this.props.addWord('Cat says Hi');
+	      this.props.addWord('Christmas nightmare');
+	      this.setState({
+	        startDisabled: false
+	      });
+	    }
+	  }, {
 	    key: 'addWord',
 	    value: function addWord() {
-	      if (this.state.value.length == 0) {
-	        return;
-	      }
-
 	      this.props.addWord(this.state.value);
 	      this.setState({
 	        value: '',
-	        startDisabled: this.props.words.length == 0
+	        startDisabled: false,
+	        addDisabled: true
 	      });
 
 	      console.log(this.props.words); // TODO remove
@@ -6123,40 +6133,47 @@
 	      var addDisabled = _state.addDisabled;
 	      var startDisabled = _state.startDisabled;
 
+	      // <img src='img/fishbowl.png' className='fullWidth' />
 
 	      return React.createElement(
 	        'div',
 	        { className: 'container-fluid body' },
-	        React.createElement('img', { src: 'img/fishbowl.png', className: '.img-responsive' }),
-	        React.createElement('br', null),
-	        numWords,
-	        ' words',
-	        React.createElement('br', null),
-	        'Enter Word/Phrase:',
 	        React.createElement('br', null),
 	        React.createElement('input', { type: 'text',
 	          value: value,
 	          onChange: this.handleWordChange
 	        }),
-	        React.createElement('br', null),
 	        React.createElement(
 	          'button',
 	          {
 	            onClick: this.addWord,
-	            className: 'btn btn-default',
+	            className: 'button btn btn-default',
 	            disabled: addDisabled
 	          },
-	          'Add'
+	          'Add Word'
 	        ),
+	        React.createElement('br', null),
+	        React.createElement('br', null),
+	        numWords,
+	        ' words',
+	        React.createElement('br', null),
 	        React.createElement('br', null),
 	        React.createElement(
 	          'button',
 	          {
+	            onClick: this.addFiveRandomWords,
+	            className: 'button btn btn-default'
+	          },
+	          'Add 5 Random Words'
+	        ),
+	        React.createElement(
+	          'button',
+	          {
 	            onClick: startGame,
-	            className: 'btn btn-default',
+	            className: 'button btn btn-default',
 	            disabled: startDisabled
 	          },
-	          'Start'
+	          'Start Game'
 	        )
 	      );
 	    }
@@ -6197,6 +6214,12 @@
 	  return {
 	    addWord: function addWord(word) {
 	      return dispatch({ type: 'ADD_WORD', value: word });
+	    },
+	    startRound: function startRound() {
+	      return dispatch({
+	        type: 'SET_PAGE',
+	        page: 'word'
+	      });
 	    }
 	  };
 	};
@@ -6219,12 +6242,19 @@
 	      return React.createElement(
 	        'div',
 	        null,
-	        'Lobby',
+	        'Round 1: Taboo',
+	        React.createElement('br', null),
+	        'Team 1 Ready?',
+	        React.createElement('br', null),
+	        '17 words remaining',
+	        React.createElement('br', null),
 	        React.createElement(
-	          'form',
-	          null,
-	          React.createElement('input', { type: 'text' }),
-	          React.createElement('input', { type: 'submit' })
+	          'button',
+	          {
+	            onClick: this.props.startRound,
+	            className: 'button btn btn-default'
+	          },
+	          'Start Round'
 	        )
 	      );
 	    }
@@ -6236,187 +6266,8 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Lobby);
 
 /***/ },
-/* 66 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _reactRedux = __webpack_require__(35);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    numWords: state.numWords
-	  };
-	};
-
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    addWord: function addWord(word) {
-	      return dispatch({ type: 'ADD_WORD', value: word });
-	    }
-	  };
-	};
-
-	// Shows the word, the timer and a button to go to the next word
-
-	var Word = function (_React$Component) {
-	  _inherits(Word, _React$Component);
-
-	  function Word() {
-	    _classCallCheck(this, Word);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Word).apply(this, arguments));
-	  }
-
-	  _createClass(Word, [{
-	    key: 'render',
-	    value: function render() {
-	      return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	          'form',
-	          null,
-	          React.createElement('input', { type: 'text' }),
-	          React.createElement('input', { type: 'submit' })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Word;
-	}(React.Component);
-
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Word);
-
-/***/ },
+/* 66 */,
 /* 67 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _reactRedux = __webpack_require__(35);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    numWords: state.numWords
-	  };
-	};
-
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    addWord: function addWord(word) {
-	      return dispatch({ type: 'ADD_WORD', value: word });
-	    }
-	  };
-	};
-
-	// Shows list of all words, scores between rounds, next team to play
-	// Lets you advance to the next round
-
-	var Scores = function (_React$Component) {
-	  _inherits(Scores, _React$Component);
-
-	  function Scores() {
-	    _classCallCheck(this, Scores);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Scores).apply(this, arguments));
-	  }
-
-	  _createClass(Scores, [{
-	    key: 'render',
-	    value: function render() {
-	      return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	          'form',
-	          null,
-	          React.createElement('input', { type: 'text' }),
-	          React.createElement('input', { type: 'submit' })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Scores;
-	}(React.Component);
-
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Scores);
-
-/***/ },
-/* 68 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _redux = __webpack_require__(42);
-
-	var defaultState = {
-	  numWords: 0,
-	  words: [],
-	  page: 'landing'
-	};
-
-	function random() {
-	  var date = new Date();
-	  var seed = date.getTime();
-	  var x = Math.sin(seed++) * 10000;
-	  return x - Math.floor(x);
-	}
-
-	var counter = function counter() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case 'SET_PAGE':
-	      return Object.assign({}, state, {
-	        page: action.page
-	      });
-	    case 'ADD_WORD':
-	      state.words.push(action.value);
-	      return Object.assign({}, state, {
-	        numWords: state.numWords + 1
-	      });
-	    default:
-	      return state;
-	  }
-	};
-
-	var Store = (0, _redux.createStore)(counter);
-	exports.default = Store;
-
-/***/ },
-/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6507,7 +6358,7 @@
 
 	      var teamCount = [];
 	      for (var i = 2; i < 4; i++) {
-	        var className = 'btn btn-default';
+	        var className = 'halfButton btn btn-default';
 	        if (numTeams == i) {
 	          className += ' active';
 	        }
@@ -6559,7 +6410,7 @@
 	          'button',
 	          {
 	            onClick: this.props.startGame,
-	            className: 'btn btn-default' },
+	            className: 'button btn btn-default' },
 	          'Continue'
 	        )
 	      );
@@ -6570,6 +6421,125 @@
 	}(React.Component);
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Teams);
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _reactRedux = __webpack_require__(35);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    numWords: state.numWords
+	  };
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    addWord: function addWord(word) {
+	      return dispatch({ type: 'ADD_WORD', value: word });
+	    }
+	  };
+	};
+
+	// Shows list of all words, scores between rounds, next team to play
+	// Lets you advance to the next round
+
+	var Scores = function (_React$Component) {
+	  _inherits(Scores, _React$Component);
+
+	  function Scores() {
+	    _classCallCheck(this, Scores);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Scores).apply(this, arguments));
+	  }
+
+	  _createClass(Scores, [{
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'form',
+	          null,
+	          React.createElement('input', { type: 'text' }),
+	          React.createElement('input', { type: 'submit' })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Scores;
+	}(React.Component);
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Scores);
+
+/***/ },
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _redux = __webpack_require__(42);
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var defaultState = _defineProperty({
+	  numWords: 0,
+	  words: [],
+	  wordsLeft: [],
+	  page: 'landing'
+	}, 'wordsLeft', 0);
+
+	function random() {
+	  var date = new Date();
+	  var seed = date.getTime();
+	  var x = Math.sin(seed++) * 10000;
+	  return x - Math.floor(x);
+	}
+
+	var counter = function counter() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? defaultState : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case 'SET_PAGE':
+	      return Object.assign({}, state, {
+	        page: action.page
+	      });
+	    case 'ADD_WORD':
+	      state.words.push(action.value);
+	      state.wordsLeft.push(action.value);
+	      return Object.assign({}, state, {
+	        numWords: state.numWords + 1,
+	        wordsLeft: state.wordsLeft + 1
+	      });
+	    default:
+	      return state;
+	  }
+	};
+
+	var Store = (0, _redux.createStore)(counter);
+	exports.default = Store;
 
 /***/ }
 /******/ ]);

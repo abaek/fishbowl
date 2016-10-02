@@ -14,13 +14,40 @@ const mapDispatchToProps = (dispatch) => {
 
 // Shows the word, the timer and a button to go to the next word
 class Word extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      time: 60,
+    }
+
+    setInterval(decreaseSecond, 1000);
+  }
+
+  decreaseSecond() {
+    this.setState({
+      time: this.state.time - 1;
+    })
+  }
+
   render() {
+    const { time } = this.state;
     return (
       <div>
-        <form>
-          <input type="text" />
-          <input type="submit" />
-        </form>
+        0:{time}
+        <br/>
+        <button
+          onClick={this.addFiveRandomWords}
+          className='button btn btn-default'
+          >
+          Show
+        </button>
+        The Quick Fox
+        <button
+          onClick={this.addFiveRandomWords}
+          className='button button btn btn-default'
+          >
+          Next
+        </button>
       </div>
     )
   }

@@ -1,0 +1,27 @@
+.fullWidth {
+  width: calc(100vw - 40px);
+}
+
+body {
+  margin: auto;
+  text-align: center;
+  font-size: 7vw;
+}
+
+.button {
+  font-size: 7vw;
+  width: 95vw;
+  margin: 5px;
+}
+
+.halfButton {
+  font-size: 7vw;
+  width: 47vw;
+}
+
+input {
+  text-transform: uppercase;
+  width: 95vw;
+  margin: 5px;
+  text-align: center;
+}

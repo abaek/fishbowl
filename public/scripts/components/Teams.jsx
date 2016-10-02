@@ -51,7 +51,7 @@ class Teams extends React.Component {
     // Options are 2-3 teams
     let teamCount = []
     for (let i = 2; i < 4; i++) {
-      let className = 'btn btn-default'
+      let className = 'halfButton btn btn-default'
       if (numTeams == i) {
         className += ' active'
       }
@@ -92,7 +92,7 @@ class Teams extends React.Component {
 
         <button
           onClick={this.props.startGame}
-          className='btn btn-default' >
+          className='button btn btn-default' >
           Continue
         </button>
       </div>

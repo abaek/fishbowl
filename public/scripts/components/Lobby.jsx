@@ -9,6 +9,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addWord: (word) => dispatch({ type: 'ADD_WORD', value: word }),
+    startRound: () => dispatch({
+      type: 'SET_PAGE',
+      page: 'word',
+    }),
   }
 }
 
@@ -18,11 +22,18 @@ class Lobby extends React.Component {
   render() {
     return (
       <div>
-        Lobby
-        <form>
-          <input type='text' />
-          <input type='submit' />
-        </form>
+        Round 1: Taboo
+        <br/>
+        Team 1 Ready?
+        <br/>
+        17 words remaining
+        <br/>
+        <button
+          onClick={this.props.startRound}
+          className='button btn btn-default'
+          >
+          Start Round
+        </button>
       </div>
     )
   }

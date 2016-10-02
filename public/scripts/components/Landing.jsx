@@ -30,6 +30,7 @@ class Landing extends React.Component {
     }
     this.addWord = this.addWord.bind(this)
     this.handleWordChange = this.handleWordChange.bind(this)
+    this.addFiveRandomWords = this.addFiveRandomWords.bind(this)
   }
 
   handleWordChange(event) {
@@ -39,15 +40,23 @@ class Landing extends React.Component {
     })
   }
 
-  addWord() {
-    if(this.state.value.length == 0){
-      return
-    }
+  addFiveRandomWords() {
+    this.props.addWord('Hi')
+    this.props.addWord('Sup')
+    this.props.addWord('Doggie')
+    this.props.addWord('Cat says Hi')
+    this.props.addWord('Christmas nightmare')
+    this.setState({
+      startDisabled: false,
+    })
+  }
 
+  addWord() {
     this.props.addWord(this.state.value)
     this.setState({
       value: '',
-      startDisabled: this.props.words.length == 0,
+      startDisabled: false,
+      addDisabled: true,
     })
 
     console.log(this.props.words) // TODO remove
@@ -57,35 +66,38 @@ class Landing extends React.Component {
     const { numWords, startGame } = this.props
     const { value, addDisabled, startDisabled } = this.state
 
+    // <img src='img/fishbowl.png' className='fullWidth' />
     return (
       <div className='container-fluid body'>
-        <img src='img/fishbowl.png' className='.img-responsive'/>
-
-        <br/>
-        {numWords} words
-        <br/>
-        Enter Word/Phrase:
         <br/>
         <input type='text'
           value={value}
           onChange={this.handleWordChange}
           />
-        <br/>
         <button
           onClick={this.addWord}
-          className='btn btn-default'
+          className='button btn btn-default'
           disabled={addDisabled}
           >
-          Add
+          Add Word
         </button>
         <br/>
-        
+        <br/>
+        {numWords} words
+        <br/>
+        <br/>
+        <button
+          onClick={this.addFiveRandomWords}
+          className='button btn btn-default'
+          >
+          Add 5 Random Words
+        </button>
         <button
           onClick={startGame}
-          className='btn btn-default'
+          className='button btn btn-default'
           disabled={startDisabled}
           >
-          Start
+          Start Game
         </button>
       </div>
     )
