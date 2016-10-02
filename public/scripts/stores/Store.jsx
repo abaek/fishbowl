@@ -2,10 +2,10 @@ import { createStore } from 'redux'
 
 const defaultState = {
   numWords: 0,
+  numWordsLeft: 0,
   words: [],
   wordsLeft: [],
   page: 'landing',
-  wordsLeft: 0,
 }
 
 function random() {
@@ -26,7 +26,7 @@ const counter = (state = defaultState, action) => {
       state.wordsLeft.push(action.value)
       return Object.assign({}, state, {
         numWords: state.numWords + 1,
-        wordsLeft: state.wordsLeft + 1,
+        numWordsLeft: state.numWordsLeft + 1,
       })
     default:
       return state

@@ -20,7 +20,9 @@ class Word extends React.Component {
       time: 60,
     }
 
-    setInterval(decreaseSecond, 1000);
+    this.decreaseSecond = this.decreaseSecond.bind(this)
+
+    setInterval(this.decreaseSecond, 1000)
   }
 
   decreaseSecond() {
@@ -30,7 +32,7 @@ class Word extends React.Component {
   }
 
   render() {
-    const { time } = this.state;
+    const { time } = this.state
     return (
       <div>
         0:{time}

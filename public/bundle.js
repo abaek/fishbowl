@@ -6313,7 +6313,9 @@
 	      time: 60
 	    };
 
-	    setInterval(decreaseSecond, 1000);
+	    _this.decreaseSecond = _this.decreaseSecond.bind(_this);
+
+	    setInterval(_this.decreaseSecond, 1000);
 	    return _this;
 	  }
 
@@ -6596,14 +6598,13 @@
 
 	var _redux = __webpack_require__(42);
 
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var defaultState = _defineProperty({
+	var defaultState = {
 	  numWords: 0,
+	  numWordsLeft: 0,
 	  words: [],
 	  wordsLeft: [],
 	  page: 'landing'
-	}, 'wordsLeft', 0);
+	};
 
 	function random() {
 	  var date = new Date();
@@ -6626,7 +6627,7 @@
 	      state.wordsLeft.push(action.value);
 	      return Object.assign({}, state, {
 	        numWords: state.numWords + 1,
-	        wordsLeft: state.wordsLeft + 1
+	        numWordsLeft: state.numWordsLeft + 1
 	      });
 	    default:
 	      return state;
