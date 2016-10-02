@@ -25,7 +25,7 @@ class Word extends React.Component {
 
   decreaseSecond() {
     this.setState({
-      time: this.state.time - 1;
+      time: this.state.time - 1,
     })
   }
 

@@ -5961,7 +5961,7 @@
 
 	var _Lobby2 = _interopRequireDefault(_Lobby);
 
-	var _Word = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Word.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _Word = __webpack_require__(66);
 
 	var _Word2 = _interopRequireDefault(_Word);
 
@@ -6266,7 +6266,102 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Lobby);
 
 /***/ },
-/* 66 */,
+/* 66 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _reactRedux = __webpack_require__(35);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    numWords: state.numWords
+	  };
+	};
+
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    addWord: function addWord(word) {
+	      return dispatch({ type: 'ADD_WORD', value: word });
+	    }
+	  };
+	};
+
+	// Shows the word, the timer and a button to go to the next word
+
+	var Word = function (_React$Component) {
+	  _inherits(Word, _React$Component);
+
+	  function Word(props) {
+	    _classCallCheck(this, Word);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Word).call(this, props));
+
+	    _this.state = {
+	      time: 60
+	    };
+
+	    setInterval(decreaseSecond, 1000);
+	    return _this;
+	  }
+
+	  _createClass(Word, [{
+	    key: 'decreaseSecond',
+	    value: function decreaseSecond() {
+	      this.setState({
+	        time: this.state.time - 1
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var time = this.state.time;
+
+	      return React.createElement(
+	        'div',
+	        null,
+	        '0:',
+	        time,
+	        React.createElement('br', null),
+	        React.createElement(
+	          'button',
+	          {
+	            onClick: this.addFiveRandomWords,
+	            className: 'button btn btn-default'
+	          },
+	          'Show'
+	        ),
+	        'The Quick Fox',
+	        React.createElement(
+	          'button',
+	          {
+	            onClick: this.addFiveRandomWords,
+	            className: 'button button btn btn-default'
+	          },
+	          'Next'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Word;
+	}(React.Component);
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Word);
+
+/***/ },
 /* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
