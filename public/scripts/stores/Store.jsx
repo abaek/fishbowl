@@ -5,7 +5,10 @@ const defaultState = {
   numWordsLeft: 0,
   words: [],
   wordsLeft: [],
+  teams: [],
   page: 'landing',
+  round: 1,
+  currentTeam: 0,
 }
 
 function random() {

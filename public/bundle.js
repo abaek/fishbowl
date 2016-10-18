@@ -6205,7 +6205,9 @@
 
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    numWords: state.numWords
+	    numWords: state.numWords,
+	    round: state.round,
+	    currentTeam: state.currentTeam
 	  };
 	};
 
@@ -6219,6 +6221,8 @@
 	    }
 	  };
 	};
+
+	var roundNames = ["ZERO ERROR", "Taboo", "Password", "Charades"];
 
 	// Screen between turns
 	// Shows number of words remaining, scores and next team to go
@@ -6238,7 +6242,10 @@
 	      return React.createElement(
 	        'div',
 	        null,
-	        'Round 1: Taboo',
+	        'Round ',
+	        this.props.round,
+	        ': ',
+	        roundNames[this.props.round],
 	        React.createElement('br', null),
 	        'Team 1 Ready?',
 	        React.createElement('br', null),
@@ -6640,7 +6647,10 @@
 	  numWordsLeft: 0,
 	  words: [],
 	  wordsLeft: [],
-	  page: 'landing'
+	  teams: [],
+	  page: 'landing',
+	  round: 1,
+	  currentTeam: 0
 	};
 
 	function random() {
