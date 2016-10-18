@@ -7,9 +7,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    addWord: (word) => dispatch({ type: 'ADD_WORD', value: word }),
-  }
+  return {}
 }
 
 // Shows list of all words, scores between rounds, next team to play

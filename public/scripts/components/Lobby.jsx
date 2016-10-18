@@ -8,7 +8,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addWord: (word) => dispatch({ type: 'ADD_WORD', value: word }),
     startRound: () => dispatch({
       type: 'SET_PAGE',
       page: 'word',
