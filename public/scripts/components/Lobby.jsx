@@ -5,6 +5,7 @@ const mapStateToProps = (state) => {
     numWords: state.numWords,
     round: state.round,
     currentTeam: state.currentTeam,
+    wordsLeft: state.wordsLeft,
   }
 }
 
@@ -14,6 +15,9 @@ const mapDispatchToProps = (dispatch) => {
       type: 'SET_PAGE',
       page: 'word',
     }),
+    increaseRound: () => dispatch({
+      type: 'INCREASE_ROUND',
+    }),
   }
 }
 
@@ -22,6 +26,12 @@ const roundNames = ["ZERO ERROR", "Taboo", "Password", "Charades"]
 // Screen between turns
 // Shows number of words remaining, scores and next team to go
 class Lobby extends React.Component {
+  componentWillMount() {
+    if (this.props.wordsLeft.length == 0) {
+        this.props.increaseRound()
+    }
+  }
+
   render() {
     return (
       <div>

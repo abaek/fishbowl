@@ -25,3 +25,7 @@ input {
   margin: 5px;
   text-align: center;
 }
+
+.hide {
+  opacity: 0;
+}
